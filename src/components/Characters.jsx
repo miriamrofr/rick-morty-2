@@ -5,6 +5,29 @@ export default function Characters(props) {
     const resetCharacters = ()=>{
         setCharacters(null);
     }
+    const eliminar = (index) => {
+        const dateCharacter = [...characters]
+        dateCharacter.splice(index,1)
+        setCharacters(dateCharacter)
+        console.log(characters)
+        console.log(index)
+    };
+
+    const matar = (index) => {
+        const dateCharacter = [...characters]
+        dateCharacter[index].status = "Dead"
+        setCharacters(dateCharacter)
+        console.log(characters)
+        console.log(index)
+    };
+
+    const revivir = (index) => {
+        const dateCharacter = [...characters]
+        dateCharacter[index].status = "Alive"
+        setCharacters(dateCharacter)
+        console.log(characters)
+        console.log(index)
+    };
 
   return (
     <div className="characters">
@@ -24,6 +47,7 @@ export default function Characters(props) {
                                 <span className="alive"/>
                                 Alive
                                 </>
+                                
                             ):character.status === 'Dead' ?(
                                 <>
                                 <span className="dead"/>
@@ -44,7 +68,22 @@ export default function Characters(props) {
                             <span className="text-grey">Especie: </span>
                             <span>{character.species}</span>
                         </p>
-                        
+                        <p>
+                            <button className='eliminar' onClick={()=> eliminar(index)}> Eliminar</button>
+                            
+                        </p>
+                        <h6>
+                            {character.status==='Alive'?(
+                                <>
+                                <button className='eliminar' onClick={()=> matar(index)}> Matar</button>
+                                </>
+                                
+                            ):(
+                                <>
+                                <button className='eliminar' onClick={()=> revivir(index)}> Revivir</button>
+                                </>
+                            )}
+                        </h6>
                     </div>
                 </div>
             ))}
