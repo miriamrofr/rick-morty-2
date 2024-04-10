@@ -12,11 +12,12 @@ function App() {
   let [infoCharacters, setInfoCharacters]=useState(""); 
   let [pageNumber, setPageNumber] = useState(1);
   let [status,setStatus] = useState("");
+  let [species, setSpecies] = useState("");
   let [gender,setGender] = useState("");
 
   const reqApi = async()=>{
 
-    const api = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}&status=${status}&gender=${gender}`);
+    const api = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}&status=${status}&species=${species}&gender=${gender}`);
     const characterApi = await api.json();
 
     setCharacters(characterApi.results);
@@ -26,8 +27,8 @@ function App() {
 
   useEffect(()=>{
     reqApi();
-  },[pageNumber,status,gender]);
-  
+
+  },[pageNumber,status,gender, species]);
 
   return (
     <div className="App">
@@ -35,17 +36,18 @@ function App() {
         <h1 className="title">Rick & Morty</h1>
         {characters ? (
            <>
-          <Filter setStatus={setStatus} setGender={setGender}/>
+          <Filter setStatus={setStatus} setGender={setGender} setSpecies={setSpecies}/>
+
           <Characters characters={characters} setCharacters={setCharacters}/>
           <Pagination setPageNumber = {setPageNumber} pageNumber={pageNumber} infoCharacters={infoCharacters}/>
           </>
-          
+
         ): (
           <>
           <img src={imageRickMorty} alt='Rick & Morty' className='img-home'/>
           <button onClick={reqApi} className='btn-search'>Buscar Personajes</button>
           </>
-          
+
         )} 
       </header>
     </div>
