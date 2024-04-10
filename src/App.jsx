@@ -9,14 +9,15 @@ import Filter from "./components/Filter";
 function App() {
 
   let [characters,setCharacters] = useState([]);
-  let [infoCharacters, setInfoCharacters]=useState("");
+  let [infoCharacters, setInfoCharacters]=useState(""); 
   let [pageNumber, setPageNumber] = useState(1);
   let [status,setStatus] = useState("");
   let [species, setSpecies] = useState("");
+  let [gender,setGender] = useState("");
 
   const reqApi = async()=>{
 
-    const api = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}&status=${status}&species=${species}`); // Añade `&species=${species}` a la URL
+    const api = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}&status=${status}&species=${species}&gender=${gender}`);
     const characterApi = await api.json();
 
     setCharacters(characterApi.results);
@@ -26,8 +27,8 @@ function App() {
 
   useEffect(()=>{
     reqApi();
-  },[pageNumber,status, species]);
-  
+
+  },[pageNumber,status,gender, species]);
 
   return (
     <div className="App">
@@ -35,7 +36,8 @@ function App() {
         <h1 className="title">Rick & Morty</h1>
         {characters ? (
            <>
-          <Filter setStatus={setStatus} setSpecies={setSpecies}/> {}
+          <Filter setStatus={setStatus} setGender={setGender} setSpecies={setSpecies}/>
+
           <Characters characters={characters} setCharacters={setCharacters}/>
           <Pagination setPageNumber = {setPageNumber} pageNumber={pageNumber} infoCharacters={infoCharacters}/>
           </>

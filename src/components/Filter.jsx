@@ -1,33 +1,55 @@
 import { useState } from 'react';
 
 const Filter = (props) => {
-    const {setStatus, setSpecies} = props;
-    const [selectedStatus, setSelectedStatus] = useState('Any');
+
+    const {setStatus,setSpecies,setGender} = props;
+    const [selectedOptionStatus, setSelectedOptionStatus] = useState('Any');
+    const [selectedOptionGender,setSelectedOptionGender] = useState('Any');
+
     const [selectedSpecies, setSelectedSpecies] = useState('Any');
 
     const speciesList = ['Any', 'Human', 'Alien', 'Humanoid', 'Unknown', 'Poopybuthole', 'Mythological Creature', 'Animal', 'Robot', 'Cronenberg', 'Disease'];
 
     const handleOptionChange = (option, type) => {
         if (type === 'status') {
-            setSelectedStatus(option);
+            setSelectedOptionStatus(option);
             setStatus(option === 'Any' ? "" : option);
         } else if (type === 'species') {
             setSelectedSpecies(option);
             setSpecies(option === 'Any' ? "" : option);
-        }
-    };
+        } else if (type === 'gender') {
+            setSelectedOptionGender(option);
+            setGender(option === 'Any' ? "" : option);
 
+    
     return (
-        <div className="dropdown">  
-            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">    
-            Status </button>  
-            <ul className="dropdown-menu">    
-                <li><a className={`dropdown-item ${selectedStatus === 'Any' ? 'active' : ''}`}  href="#" onClick={(event) => {event.preventDefault(); handleOptionChange('Any', 'status')}}>Any</a></li>
-                <li><a className={`dropdown-item ${selectedStatus === 'Alive' ? 'active' : ''}`} href="#" onClick={(event) => {event.preventDefault(); handleOptionChange('Alive', 'status')}}>Alive</a></li>    
-                <li><a className={`dropdown-item ${selectedStatus === 'Dead' ? 'active' : ''}`} href="#" onClick={(event) => {event.preventDefault(); handleOptionChange('Dead', 'status')}}>Dead</a></li>    
-                <li><a className={`dropdown-item ${selectedStatus === 'Unknown' ? 'active' : ''}`} href="#" onClick={(event) => {event.preventDefault(); handleOptionChange('Unknown', 'status')}}>Unknown</a></li>  
-            </ul>
-        
+
+        <div className='dropdown-container d-flex justify-content-center gap-3 '>
+
+            <div className="dropdown-status">  
+                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">    
+                Status </button>  
+                <ul className="dropdown-menu">    
+                    <li><a className={`dropdown-item ${selectedOptionStatus === 'Any' ? 'active' : ''}`}  href="#" onClick={() => handleOptionChange('Any','status')}>Any</a></li>
+                    <li><a className={`dropdown-item ${selectedOptionStatus === 'Alive' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Alive','status')}>Alive</a></li>    
+                    <li><a className={`dropdown-item ${selectedOptionStatus === 'Dead' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Dead','status')}>Dead</a></li>    
+                    <li><a className={`dropdown-item ${selectedOptionStatus === 'Unknown' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Unknown','status')}>Unknown</a></li>  
+                </ul>
+            </div>
+
+            <div className="dropdown-gender">  
+                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">    
+                Gender </button>  
+                <ul className="dropdown-menu">    
+                    <li><a className={`dropdown-item ${selectedOptionGender === 'Any' ? 'active' : ''}`}  href="#" onClick={() => handleOptionChange('Any','gender')}>Any</a></li>
+                    <li><a className={`dropdown-item ${selectedOptionGender === 'Female' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Female','gender')}>Female</a></li>    
+                    <li><a className={`dropdown-item ${selectedOptionGender === 'Male' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Male','gender')}>Male</a></li>    
+                    <li><a className={`dropdown-item ${selectedOptionGender === 'Genderless' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Genderless','gender')}>Genderless</a></li> 
+                    <li><a className={`dropdown-item ${selectedOptionGender === 'Unknown' ? 'active' : ''}`} href="#" onClick={() => handleOptionChange('Unknown','gender')}>Unknown</a></li>  
+                </ul>
+            </div>
+            
+            <div className="dropdown">  
         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">    
         Species </button>  
         <ul className="dropdown-menu">    
@@ -44,6 +66,8 @@ const Filter = (props) => {
             <li><a className={`dropdown-item ${selectedSpecies === 'Disease' ? 'active' : ''}`} href="#" onClick={(event) => {event.preventDefault(); handleOptionChange('Disease', 'species')}}>Disease</a></li>  
         </ul>
     </div>
+
+        </div>
     )
 }
 
