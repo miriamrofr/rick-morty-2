@@ -33,7 +33,7 @@ body {
 }
 
 .btn-search:hover {
-  background-color: #ffffff;
+  background-color: #4400ab;
   border: 1px solid #1ba94c;
   color: #1ba94c;
 }
@@ -130,6 +130,26 @@ body {
   font-size: 15px;
 }
 
+.eliminar {
+  background-color: #1ba94c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgb(27 169 76 / 50%);
+  font-size: 18.005px;
+  padding-left: 1.528em;
+  padding-right: 1.528em;
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 2.778em;
+  border: none;
+  cursor: pointer;
+}
+
+.eliminar:hover {
+  background-color: #4400ab;
+  border: 1px solid #1ba94c;
+  color: #1ba94c;
+}
+
 @media (max-width: 768px) {
   .characters {
     padding: 0 20px;
@@ -150,4 +170,25 @@ body {
   .character-container img {
     width: 150px;
   }
+
+  .eliminar {
+    background-color: #1ba94c;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgb(27 169 76 / 50%);
+    font-size: 18.005px;
+    padding-left: 1.528em;
+    padding-right: 1.528em;
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 2.778em;
+    border: none;
+    cursor: pointer;
+  }
+
+  .eliminar:hover {
+    background-color: #4400ab;
+    border: 1px solid #1ba94c;
+    color: #1ba94c;
+  }
+
 }
